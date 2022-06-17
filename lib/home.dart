@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterprojects/splash.dart';
@@ -49,9 +49,9 @@ class _MyGridScreenState extends State<MyGridScreen> {
     Size s = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(223, 20, 20, 20),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        centerTitle: false,
+        centerTitle: true,
         flexibleSpace: ClipRRect(
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(50),
@@ -61,7 +61,7 @@ class _MyGridScreenState extends State<MyGridScreen> {
           "ALZ",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color.fromARGB(255, 138, 86, 18),
+        backgroundColor: Color.fromARGB(255, 15, 102, 179),
       ),
       body: Center(
         child: GridView.count(
@@ -72,64 +72,32 @@ class _MyGridScreenState extends State<MyGridScreen> {
           mainAxisSpacing: s.height / 20,
           crossAxisCount: 2,
           children: <Widget>[
-            new SizedBox(
+            Container(
+              decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Color.fromARGB(255, 6, 6, 6).withOpacity(0.8),
+        spreadRadius: 0.5,
+        blurRadius: 25,
+        offset: Offset(0, 0), // changes position of shadow
+      ),
+    ],
+  ),
               child: FlatButton(
-                color: Color.fromARGB(255, 30, 30, 30),
+                color:    Color.fromARGB(255, 79, 138, 189),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0)),
-                child: Text(
-                  '+                         ADD',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
-                ),
-                onPressed: () {},
-              ),
-            ),
-            new SizedBox(
-              child: FlatButton(
-                color: Color.fromARGB(255, 16, 74, 139),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0)),
-                child: new Text(
-                  'SEARCH',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
-                ),
-                onPressed: () {},
-              ),
-            ),
-            new SizedBox(
-              child: FlatButton(
-                color: Color.fromARGB(255, 126, 136, 16),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0)),
-                child: new Text(
-                  'EXERCISES',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                onPressed: () {},
-              ),
-            ),
-            new SizedBox(
-              child: FlatButton(
-                color: Color.fromARGB(255, 14, 183, 230),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0)),
-                child: new Text(
-                  'SCHEDULER ',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                onPressed: () {},
-              ),
-            ),
-            new SizedBox(
-              child: FlatButton(
-                color: Color.fromARGB(255, 10, 239, 29),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0)),
-                child: new Text(
-                  'GALLERY',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
+                child: RichText(
+                   textAlign: TextAlign.center,
+     text: TextSpan(
+          text: 'ADD\n',
+          
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
+          children: <TextSpan>[
+             TextSpan(text: '➕', style: TextStyle(fontSize: 40))
+          ]
+     ),
+),
                 onPressed: () {},
               ),
             ),
@@ -137,7 +105,36 @@ class _MyGridScreenState extends State<MyGridScreen> {
               decoration: BoxDecoration(
     boxShadow: [
       BoxShadow(
-        color: Color.fromARGB(255, 254, 250, 250).withOpacity(0.8),
+        color: Color.fromARGB(255, 21, 20, 20).withOpacity(0.8),
+        spreadRadius: 0.5,
+        blurRadius: 25,
+        offset: Offset(0, 0), // changes position of shadow
+      ),
+    ],
+  ),
+              child: FlatButton(
+                color:    Color.fromARGB(255, 79, 138, 189),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0)),
+                child: RichText(
+                   textAlign: TextAlign.center,
+     text: TextSpan(
+          text: 'SEARCH\n',
+          
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color:Colors.white),
+          children: <TextSpan>[
+             TextSpan(text: '🔎', style: TextStyle(fontSize: 40))
+          ]
+     ),
+),
+                onPressed: () {},
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Color.fromARGB(255, 19, 18, 18).withOpacity(0.8),
         spreadRadius: 0.5,
         blurRadius: 25,
         offset: Offset(0, 2), // changes position of shadow
@@ -145,14 +142,110 @@ class _MyGridScreenState extends State<MyGridScreen> {
     ],
   ),
               child: FlatButton(
-                color: Color.fromARGB(255, 255, 255, 255),
+                color:  Color.fromARGB(255, 79, 138, 189),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0)),
-                child: new Text(
-                  'EMERGENCY \n 🚨',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color.fromARGB(255, 251, 8, 8)),
-                ),
+                child: RichText(
+                   textAlign: TextAlign.center,
+     text: TextSpan(
+          text: 'EXERCISE\n',
+          
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color:Colors.white),
+          children: <TextSpan>[
+             TextSpan(text: '🧠', style: TextStyle(fontSize: 50))
+          ]
+     ),
+),
+                onPressed: () {},
+              ),
+            ),
+           Container(
+            
+              decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Color.fromARGB(255, 18, 18, 18).withOpacity(0.8),
+        spreadRadius: 0.5,
+        blurRadius: 25,
+        offset: Offset(0, 2), // changes position of shadow
+      ),
+    ],
+  ),
+              child: FlatButton(
+                color:  Color.fromARGB(255, 79, 138, 189),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0)),
+                child: RichText(
+                   textAlign: TextAlign.center,
+     text: TextSpan(
+          text: 'SCHEDULER\n',
+          
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
+          children: <TextSpan>[
+             TextSpan(text: '✔️', style: TextStyle(fontSize: 50))
+          ]
+     ),
+),
+
+                onPressed: () {},
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Color.fromARGB(255, 13, 13, 12).withOpacity(0.8),
+        spreadRadius: 0.5,
+        blurRadius: 25,
+        offset: Offset(0, 0), // changes position of shadow
+      ),
+    ],
+  ),
+              child: FlatButton(
+                color:  Color.fromARGB(255, 79, 138, 189),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0)),
+                child:  RichText(
+                   textAlign: TextAlign.center,
+     text: TextSpan(
+          text: 'GALLERY\n\n',
+          
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
+          children: <TextSpan>[
+             TextSpan(text: '🖼️', style: TextStyle(fontSize: 40))
+          ]
+     ),
+),
+                onPressed: () {},
+              ),
+            ),
+            Container(
+               decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Color.fromARGB(255, 5, 5, 5).withOpacity(1),
+        spreadRadius: 0.5,
+        blurRadius: 25,
+        offset: Offset(0, 0), // changes position of shadow
+      ),
+    ],
+  ),
+              
+              child: FlatButton(
+                color: Color.fromARGB(255, 243, 57, 57),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                child: RichText(
+                   textAlign: TextAlign.center,
+     text: TextSpan(
+          text: 'EMERGENCY\n\n',
+          
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
+          children: <TextSpan>[
+             TextSpan(text: '🚨', style: TextStyle(fontSize: 40))
+          ]
+     ),
+),
                 onPressed: () {},
               ),
             ),
