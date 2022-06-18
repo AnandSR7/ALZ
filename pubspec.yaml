@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   animated_splash_screen:
+  flutter_phone_direct_caller: ^2.1.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -58,15 +59,16 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  
   assets:
     - images/
       
 
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
+    # https://flutter.dev/assets-and-images/#resolution-aware-
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+    # https://flutter.dev/assets-and-images/#from-packages
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
