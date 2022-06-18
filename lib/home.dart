@@ -1,7 +1,9 @@
-
+import 'dart:async';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterprojects/splash.dart';
+import 'splash.dart';
+import 'emergency.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -246,7 +248,12 @@ class _MyGridScreenState extends State<MyGridScreen> {
           ]
      ),
 ),
-                onPressed: () {},
+               onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>  App()),
+  );
+}
               ),
             ),
           ],
@@ -255,3 +262,4 @@ class _MyGridScreenState extends State<MyGridScreen> {
     );
   }
 }
+ 
