@@ -28,23 +28,39 @@
             appBar: new AppBar(
               title: const Text('EMERGENCY'),
             ),
-            body: new Column(
+            body: new Row( 
+              mainAxisAlignment: MainAxisAlignment.center,
               children:<Widget>[
-               
-                Center(
-                  child: SizedBox(
-                    
-                    width: 300,
-                    height: 200,
-                    child: RaisedButton(
-                      color: Colors.red,
-                      child: Text("CALL"),
-                      onPressed: () async{
-                        FlutterPhoneDirectCaller.callNumber(_numberCtrl.text);
-                      },
-                    ),
-                  ),
-                )
+                
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox.fromSize(
+  size: Size(250, 250), // button width and height
+  child: ClipOval(
+    child: Material(
+      color: Colors.red, // button color
+      child: InkWell(
+        splashColor: Colors.green, // splash color
+        onTap: () async{
+                            FlutterPhoneDirectCaller.callNumber(_numberCtrl.text);
+                          }, // button pressed
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+                Icon(Icons.call, size: 75,), // icon
+                Text("Call",style: TextStyle(fontSize: 50),),
+                 // text
+          ],
+        ),
+      ),
+    ),
+  ),
+),
+              ],
+            )
+
+
               ]
             ),
           ),
