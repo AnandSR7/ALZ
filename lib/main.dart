@@ -5,8 +5,21 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
-  runApp(
-    MyApp()
-  );
+  
+  runApp(LoginSignupUI());
 }
+
+class LoginSignupUI extends StatelessWidget {
+  const LoginSignupUI({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Login Signup UI",
+      home: LoginSignupScreen(),
+    );
+  }
+}
+  
+
