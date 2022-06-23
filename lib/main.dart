@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+import 'package:login_singup/screen/login_signup.dart';
 
-  runApp(
-    MyApp()
-  );
+void main() {
+  runApp(LoginSignupUI());
+}
+
+class LoginSignupUI extends StatelessWidget {
+  const LoginSignupUI({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Login Signup UI",
+      home: LoginSignupScreen(),
+    );
+  }
 }
