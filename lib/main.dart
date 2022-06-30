@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutterprojects/login_signup.dart';
 import 'home.dart';
 import 'package:flutter/services.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  
+
   runApp(LoginSignupUI());
 }
 
@@ -21,5 +23,3 @@ class LoginSignupUI extends StatelessWidget {
     );
   }
 }
-  
-

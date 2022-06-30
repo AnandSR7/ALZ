@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:login_singup/config/palette.dart';
+import 'palette.dart';
+import 'package:flutter/src/painting/alignment.dart';
 
 class LoginSignupScreen extends StatefulWidget {
   @override
@@ -393,10 +394,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           child: !showShadow
               ? Container(
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Colors.orange[200], Colors.red[400]],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight),
+                      gradient: LinearGradient(colors: [
+                        Color.fromARGB(255, 196, 146, 71),
+                        Color.fromARGB(255, 239, 83, 80)
+                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
