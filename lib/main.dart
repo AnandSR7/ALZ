@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterprojects/splash.dart';
 import 'login_signup.dart';
 import 'package:flutter/services.dart';
 
@@ -18,7 +19,7 @@ class LoginSignupUI extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Login Signup UI",
-      home: LoginSignupScreen(),
+      home: splash(),
     );
   }
 }
