@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterprojects/main.dart';
-
-import 'home.dart';
+import 'main.dart';
+import 'dart:async';
+import 'login_signup.dart';
 
 class splash extends StatefulWidget {
   const splash({Key? key}) : super(key: key);
@@ -18,33 +18,37 @@ class _splashState extends State<splash> {
   }
 
   _navigatetohome() async {
-    await Future.delayed((Duration(milliseconds: 1000)));
+    await Future.delayed((Duration(milliseconds: 3000)));
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => MyHomePage(
-                  title: 'ALZ',
+            builder: (context) => LoginSignupScreen(
+                 
                 )));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor:Colors.white,
       body: Center(
+       
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               height: 100,
-              width: 100,
-              color: Color.fromARGB(255, 1, 38, 67),
+              width: 180,
+             decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+              'images/ALZ_logo.png'),
+          fit: BoxFit.fill,
+        ),
+        shape: BoxShape.rectangle,
+      ),
             ),
-            Container(
-              child: Text(
-                "ALZ",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ),
+            
           ],
         ),
       ),

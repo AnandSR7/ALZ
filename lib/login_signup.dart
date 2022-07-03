@@ -1,8 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'palette.dart';
+import 'package:splashscreen/splashscreen.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/src/painting/alignment.dart';
 import 'home.dart';
+import 'dart:async';
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: 
+      SplashScreen(
+        seconds: 2,
+        navigateAfterSeconds:MyHomePage(title: 'ALZ'),
+        title: new Text(
+          'WELCOME',textAlign: TextAlign.center,
+          style: new TextStyle(
+              letterSpacing: 3.0,
+              fontWeight: FontWeight.w300,
+              fontSize: 35.0,
+              color: Color.fromARGB(255, 9, 9, 9)),
+        ),
+        
+      ),
+      
+    );
+    
+  }
+}
 
 class LoginSignupScreen extends StatefulWidget {
   @override
@@ -165,29 +195,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           ),
           // Trick to add the submit button
           buildBottomHalfContainer(false),
-          // Bottom buttons
-          // Positioned(
-          //   top: MediaQuery.of(context).size.height - 100,
-          //   right: 0,
-          //   left: 0,
-          //   child: Column(
-          //     children: [
-          //       Text(isSignupScreen ? "Or Signup with" : "Or Sign in with"),
-          //       Container(
-          //         margin: EdgeInsets.only(right: 20, left: 20, top: 15),
-          //         child: Row(
-          //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //           children: [
-          //             buildTextButton(MaterialCommunityIcons.facebook,
-          //                 "Facebook", Palette.facebookColor),
-          //             buildTextButton(MaterialCommunityIcons.google_plus,
-          //                 "Google", Palette.googleColor),
-          //           ],
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // )
+         
         ],
       ),
     );
@@ -320,23 +328,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ],
             ),
           ),
-          // Container(
-          //   width: 200,
-          //   margin: EdgeInsets.only(top: 20),
-          //   child: RichText(
-          //     textAlign: TextAlign.center,
-          //     text: TextSpan(
-          //         text: "By pressing 'Submit' you agree to our ",
-          //         style: TextStyle(color: Palette.textColor2),
-          //         children: [
-          //           TextSpan(
-          //             //recognizer: ,
-          //             text: "term & conditions",
-          //             style: TextStyle(color: Colors.orange),
-          //           ),
-          //         ]),
-          //   ),
-          // ),
+        
         ],
       ),
     );
