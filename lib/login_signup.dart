@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'palette.dart';
@@ -408,9 +409,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
+                  
+                  onTap: () =>
+                 
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => MyApp()),
                   ),
                 )
               : Center(),
