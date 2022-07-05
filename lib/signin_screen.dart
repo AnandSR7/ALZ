@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: 
       SplashScreen(
         seconds: 2,
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           'WELCOME',textAlign: TextAlign.center,
           style: new TextStyle(
               letterSpacing: 3.0,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w400,
               fontSize: 35.0,
               color: Color.fromARGB(255, 9, 9, 9)),
         ),
@@ -51,9 +52,9 @@ class _SignInScreenState extends State<SignInScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-          hexStringToColor("CB2B93"),
-          hexStringToColor("9546C4"),
-          hexStringToColor("5E61F4")
+             hexStringToColor("00172D"),
+             hexStringToColor("0052A2"),
+              hexStringToColor("92DFF3"),
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(
@@ -83,7 +84,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           password: _passwordTextController.text)
                       .then((value) {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyHomePage(title: 'ALZ')));
+                        MaterialPageRoute(builder: (context) => MyApp()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
