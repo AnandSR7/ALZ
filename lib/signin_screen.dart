@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'reusable_widget.dart';
 import 'home_screen.dart';
 import 'reset_password.dart';
@@ -86,7 +87,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MyApp()));
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                    Alert(
+                                context: context,
+                                title: "Failed Login",
+                                desc: "Incorrect Email Or Password.")
+                            .show();
                   });
                 }),
                 signUpOption()
