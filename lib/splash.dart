@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterprojects/home.dart';
 import 'dart:async';
 import 'signin_screen.dart';
-import 'main.dart';
-import 'home.dart';
 
 class splash extends StatefulWidget {
   const splash({Key? key}) : super(key: key);
@@ -21,24 +18,12 @@ class _splashState extends State<splash> {
 
   _navigatetohome() async {
     await Future.delayed((Duration(milliseconds: 3000)));
-    bool visitingFlag= await getVisitingFlag();
-    if(visitingFlag==true){
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => MyHomePage(title: 'ALZ'),
-            ),
-    );
-    }
-    else{
-       Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => SignInScreen()
-            ),
-    );
-    }
-            
+            builder: (context) => SignInScreen(
+                 
+                )));
   }
 
   @override
