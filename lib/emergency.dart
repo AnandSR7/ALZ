@@ -27,6 +27,11 @@
           home: new Scaffold(
             appBar: new AppBar(
               title: const Text('EMERGENCY'),
+               automaticallyImplyLeading: false,
+  leading: new IconButton(
+    icon: new Icon(Icons.arrow_back, color: Color.fromARGB(255, 8, 10, 36)),
+    onPressed: () => Navigator.of(context).pop(),
+            ),
             ),
             body: new Row( 
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,6 +55,7 @@
           children: <Widget>[
                 Icon(Icons.call, size: 75,), // icon
                 Text("Call",style: TextStyle(fontSize: 50),),
+                
                  // text
           ],
         ),
