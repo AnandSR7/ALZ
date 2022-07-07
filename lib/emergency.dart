@@ -26,6 +26,8 @@
           debugShowCheckedModeBanner: false,
           home: new Scaffold(
             appBar: new AppBar(
+               backgroundColor:   Color.fromARGB(255, 79, 138, 189),
+              centerTitle: true,
               title: const Text('EMERGENCY'),
               automaticallyImplyLeading: false,
               leading: new IconButton(

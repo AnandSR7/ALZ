@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterprojects/signin_screen.dart';
 import 'emergency.dart';
-import 'excercise.dart';
+import 'exercise.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -38,18 +39,24 @@ class _MyGridScreenState extends State<MyGridScreen> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
+        backgroundColor:   Color.fromARGB(255, 79, 138, 189),
         centerTitle: true,
-        flexibleSpace: ClipRRect(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(50),
-              bottomRight: Radius.circular(50)),
-        ),
-        title: Text(
-          "ALZ",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Color.fromARGB(255, 15, 102, 179),
-      ),
+         title: const Text('ALZ'),
+              automaticallyImplyLeading: true,
+              leading: Align(
+                alignment: Alignment.topRight,
+                child: new IconButton(
+                           icon: new Icon(Icons.logout_sharp),
+                          onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>   SignInScreen()),
+                );
+                },
+                          ),
+              ),
+            ),
+        
+      
       body: Center(
         child: GridView.count(
           primary: true,
