@@ -43,9 +43,9 @@ class _MyGridScreenState extends State<MyGridScreen> {
         title: const Text('ALZ'),
         centerTitle: true,
               leading: 
-                   IconButton(
-                            icon: Icon(Icons.home),
-                            onPressed: () {},
+                   Container(
+                            
+                          
                                       ),
                   actions: [
                     IconButton( icon: Icon(Icons.logout_sharp),

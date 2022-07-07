@@ -20,23 +20,13 @@ class _splashState extends State<splash> {
 
   _navigatetohome() async {
     await Future.delayed((Duration(milliseconds: 3000)));
-    bool visitingFlag= await getVisitingFlag();
-    if(visitingFlag==true){
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => MyHomePage(title: 'ALZ'),
-            ),
-    );
-    }
-    else{
        Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (context) => SignInScreen()
             ),
     );
-    }
+    
   }
 
   @override
