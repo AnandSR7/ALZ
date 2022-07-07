@@ -97,7 +97,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MyApp()));
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                     Alert(
+                                context: context,
+                                title: "Invalid Entry",
+                                desc: "Error ${error.toString()}").show();
                   });
                 })
               ],
