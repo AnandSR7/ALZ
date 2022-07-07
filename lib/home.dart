@@ -40,21 +40,23 @@ class _MyGridScreenState extends State<MyGridScreen> {
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         backgroundColor:   Color.fromARGB(255, 79, 138, 189),
+        title: const Text('ALZ'),
         centerTitle: true,
-         title: const Text('ALZ'),
-              automaticallyImplyLeading: true,
-              leading: Align(
-                alignment: Alignment.topRight,
-                child: new IconButton(
-                           icon: new Icon(Icons.logout_sharp),
-                          onPressed: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>   SignInScreen()),
-                );
-                },
-                          ),
-              ),
-            ),
+              leading: 
+                   IconButton(
+                            icon: Icon(Icons.home),
+                            onPressed: () {},
+                                      ),
+                  actions: [
+                    IconButton( icon: Icon(Icons.logout_sharp),
+                            onPressed: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>   SignInScreen()));
+                                 })
+                  ],
+                                     
+                  
+                ),
         
       
       body: Center(
