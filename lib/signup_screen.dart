@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterprojects/home.dart';
 import 'reusable_widget.dart';
 import 'home.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'color_utils.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
