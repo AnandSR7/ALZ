@@ -209,11 +209,11 @@ class _MyGridScreenState extends State<MyGridScreen> {
                 child:  RichText(
                    textAlign: TextAlign.center,
      text: TextSpan(
-          text: 'GALLERY\n\n',
+          text: 'MEDICINE REMINDER\n\n',
           
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
           children: <TextSpan>[
-             TextSpan(text: '🖼️', style: TextStyle(fontSize: 40))
+             TextSpan(text: '💊', style: TextStyle(fontSize: 40))
           ]
      ),
 ),

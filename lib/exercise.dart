@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
                       "Points",
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w300),
+                          fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ) : Container(),
