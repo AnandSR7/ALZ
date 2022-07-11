@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'signin_screen.dart';
@@ -20,12 +21,20 @@ class _splashState extends State<splash> {
 
   _navigatetohome() async {
     await Future.delayed((Duration(milliseconds: 3000)));
-       Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => SignInScreen()
-            ),
-    );
+      
+    FirebaseAuth.instance
+  .idTokenChanges()
+  .listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+       Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => SignInScreen()));
+    } else {
+      print('User is signed in!');
+       Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => MyHomePage(title: "ALZ")));
+    }
+  });
     
   }
 

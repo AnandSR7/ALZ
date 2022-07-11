@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
     
   }
 }
+
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
@@ -47,6 +48,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _emailTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -87,6 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MyApp()));
                   }).onError((error, stackTrace) {
+                  
                     Alert(
                                 context: context,
                                 title: "Failed Login",

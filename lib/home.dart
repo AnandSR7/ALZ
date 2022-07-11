@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterprojects/signin_screen.dart';
@@ -49,10 +50,13 @@ class _MyGridScreenState extends State<MyGridScreen> {
                                       ),
                   actions: [
                     IconButton( icon: Icon(Icons.logout_sharp),
-                            onPressed: () {Navigator.push(
+                            onPressed: () async{
+                             await FirebaseAuth.instance.signOut();
+                              Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) =>   SignInScreen()));
-                                 })
+                        }
+                    ),
                   ],
                                      
                   
