@@ -87,7 +87,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           password: _passwordTextController.text)
                       .then((value) {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyApp()));
+                        MaterialPageRoute(builder: (context) => MyHomePage(title: "ALZ",)));
                   }).onError((error, stackTrace) {
                   
                     Alert(

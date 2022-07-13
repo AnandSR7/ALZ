@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'Profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterprojects/Profile.dart';
 import 'package:flutterprojects/signin_screen.dart';
 import 'emergency.dart';
 import 'exercise.dart';
@@ -39,14 +41,14 @@ class _MyGridScreenState extends State<MyGridScreen> {
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      
       appBar: AppBar(
         backgroundColor:   Color.fromARGB(255, 79, 138, 189),
         title: const Text('ALZ'),
         centerTitle: true,
               leading: 
                    Container(
-                            
-                          
+                           
                                       ),
                   actions: [
                     IconButton( icon: Icon(Icons.logout_sharp),
@@ -98,7 +100,12 @@ class _MyGridScreenState extends State<MyGridScreen> {
           ]
      ),
 ),
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>  Profile()),
+  );
+                },
               ),
             ),
             Container(
