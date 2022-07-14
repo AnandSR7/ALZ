@@ -1,9 +1,15 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterprojects/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'home.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 import 'package:image_picker/image_picker.dart';
+import 'signin_screen.dart';
+
+
+
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -27,7 +33,9 @@ class _ProfileState extends State<Profile> {
     final imagetemp=File(image.path);
    setState(() => this.image=imagetemp);
   }
-  final items=['Family','Friend','CloseFriend','Assistant'];
+  TextEditingController name = new TextEditingController();
+  TextEditingController rel = new TextEditingController();
+  TextEditingController des = new TextEditingController();
   @override
   Widget build(BuildContext context) {
      return Scaffold(
@@ -74,7 +82,19 @@ class _ProfileState extends State<Profile> {
     primary: Colors.red, // background
     onPrimary: Colors.white, // foreground
   ),
-  onPressed: () { },
+  onPressed: () {
+    Map<String,dynamic>data={
+      "Name":name.text,
+      "Relation":rel.text,
+      "Description":des.text,
+    };
+    final databaseReference  = FirebaseFirestore.instance;
+
+     databaseReference .collection("Users").add(data);
+      Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>   MyHomePage(title: "ALZ",)));
+   },
   child: Text('Save'),
 )
                   
@@ -150,10 +170,11 @@ class _ProfileState extends State<Profile> {
   Widget nameTextField()
   {
     return TextFormField(
+      controller: name,
       decoration:InputDecoration(
         border: OutlineInputBorder(
          borderSide: const BorderSide(color: Color.fromARGB(255, 12, 2, 2), width: 2.0),
-
+        
         ),
         prefixIcon:
          Icon(Icons.person,color: Colors.black),
@@ -168,6 +189,7 @@ class _ProfileState extends State<Profile> {
   Widget relationTextField()
   {
     return TextFormField(
+       controller: rel,
       decoration:InputDecoration(
         border: OutlineInputBorder(
          borderSide: const BorderSide(color: Color.fromARGB(255, 12, 2, 2), width: 2.0),
@@ -186,6 +208,7 @@ class _ProfileState extends State<Profile> {
   {
     return TextFormField(
       maxLines: 5,
+       controller: des,
       decoration:InputDecoration(
         border: OutlineInputBorder(
          borderSide: const BorderSide(color: Color.fromARGB(255, 12, 2, 2), width: 2.0),
