@@ -15,6 +15,7 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+  
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -38,10 +39,8 @@ class _MyGridScreenState extends State<MyGridScreen> {
   @override
   Widget build(BuildContext context) {
     Size s = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      
       appBar: AppBar(
         backgroundColor:   Color.fromARGB(255, 79, 138, 189),
         title: const Text('ALZ'),
@@ -104,6 +103,7 @@ class _MyGridScreenState extends State<MyGridScreen> {
                    Navigator.push(
     context,
     MaterialPageRoute(builder: (context) =>  Profile()),
+    
   );
                 },
               ),

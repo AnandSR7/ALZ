@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    // TODO: implement initState
+   
     super.initState();
     reStart();
   }
@@ -25,10 +25,9 @@ class _HomeState extends State<Home> {
 
     gridViewTiles = myPairs;
     Future.delayed(const Duration(seconds: 5), () {
-// Here you can write your code
+
       setState(() {
         print("2 seconds done");
-        // Here you can write your code for open new view
         questionPairs = getQuestionPairs();
         gridViewTiles = questionPairs;
         selected = false;

@@ -40,7 +40,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
      return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      
+       
       appBar: AppBar(
         backgroundColor:   Color.fromARGB(255, 79, 138, 189),
           centerTitle: true,
@@ -51,55 +51,64 @@ class _ProfileState extends State<Profile> {
               onPressed: () => Navigator.of(context).pop(),
               ),
               ),
-              body:Padding(
-               padding:EdgeInsets.fromLTRB(
-                20, 10, 20, 10),
-                child: ListView(
-                  children: <Widget>[
-                    imageprofile(),
-                    const SizedBox(
-                  height: 10,
+              body:Container(
+                
+                 width: MediaQuery.of(context).size.width,
+                     height: MediaQuery.of(context).size.height,
+                child: Padding(
+                 padding:EdgeInsets.fromLTRB(
+                  20, 10, 20, 10),
+                 
+                  child: ListView(
+                    children: <Widget>[
+                      imageprofile(),
+                      const SizedBox(
+                    height: 10,
+                  ),
+                     nameTextField(),
+                     const SizedBox(
+                    height: 10,
+                  ),
+                     relationTextField(),
+                    
+                     const SizedBox(
+                    height: 10,
+                  ),
+                     descriptionTextField(),
+                     const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                     width: MediaQuery.of(context).size.width/3,
+                     height: MediaQuery.of(context).size.height/10,
+                    child:ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red, // background
+                  onPrimary: Colors.white, // foreground
                 ),
-                   nameTextField(),
-                   const SizedBox(
-                  height: 10,
-                ),
-                   relationTextField(),
-                  
-                   const SizedBox(
-                  height: 10,
-                ),
-                   descriptionTextField(),
-                   const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                   width: MediaQuery.of(context).size.width/3,
-                   height: MediaQuery.of(context).size.height/10,
-                  child:ElevatedButton(
-  style: ElevatedButton.styleFrom(
-    primary: Colors.red, // background
-    onPrimary: Colors.white, // foreground
-  ),
-  onPressed: () {
-    Map<String,dynamic>data={
-      "Name":name.text,
-      "Relation":rel.text,
-      "Description":des.text,
-    };
-    final databaseReference  = FirebaseFirestore.instance;
-
-     databaseReference .collection("Users").add(data);
-      Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>   MyHomePage(title: "ALZ",)));
-   },
-  child: Text('Save'),
-)
-                  
-                ),
-                  ],
+                onPressed: () {
+                  Map<String,dynamic>data={
+                    "Name":name.text,
+                    "Relation":rel.text,
+                    "Description":des.text,
+                  };
+                   final FirebaseAuth auth = FirebaseAuth.instance;
+                    User ?user = auth.currentUser;
+                   final uid = user!.uid;
+                  final databaseReference  = FirebaseFirestore.instance;
+                
+                   databaseReference .collection("Users").doc(uid).collection("Profiles").add(data);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>   MyHomePage(title: "ALZ",)));
+                 },
+                child: Text('Save'),
+              )
+                    
+                  ),
+                    ],
+                  ),
                 ),
               )
      );
@@ -111,7 +120,9 @@ class _ProfileState extends State<Profile> {
         children: <Widget>[
           CircleAvatar(
             radius:80.0,
-            backgroundImage:AssetImage("images/bgprofile.jpg"),
+            backgroundImage:
+            AssetImage("images/bgprofile.jpg"),
+            //image==null?AssetImage("images/bgprofile.jpg"):FileImage(File(image.path)),
           ),
           Positioned(
             bottom:20.0,

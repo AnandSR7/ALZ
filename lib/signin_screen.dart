@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'reusable_widget.dart';
-import 'home_screen.dart';
 import 'reset_password.dart';
 import 'signup_screen.dart';
 import 'package:splashscreen/splashscreen.dart';

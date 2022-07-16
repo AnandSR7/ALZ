@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterprojects/home.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'reusable_widget.dart';
 import 'home.dart';
 import 'color_utils.dart';
@@ -44,6 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _userNameTextController = TextEditingController();
+  TextEditingController _EmergencyTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,6 +92,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
+                reusableTextField("Emergency number",Icons.call, true,
+                    _EmergencyTextController),
+                const SizedBox(
+                  height: 20,
+                ),
                 firebaseUIButton(context, "Sign Up", () {
                   FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
@@ -96,6 +104,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           password: _passwordTextController.text)
                       .then((value) {
                     print("Created New Account");
+                    final FirebaseAuth auth = FirebaseAuth.instance;
+                  final User ?user = auth.currentUser;
+                  final uid = user!.uid; 
+                   Map<String,dynamic>data={
+      "Emergencyno":_EmergencyTextController.text,
+           };
+    final db  = FirebaseFirestore.instance;
+
+     db.collection("Users").doc(uid).collection("Emergency no").add(data);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MyApp()));
                   }).onError((error, stackTrace) {
@@ -103,11 +120,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 context: context,
                                 title: "Invalid Entry",
                                 desc: "Error ${error.toString()}").show();
-                  });
-                })
+                  }
+                  );
+                  
+                  
+                }
+                )
               ],
             ),
-          ))),
+          )
+          )
+          ),
     );
   }
 }
