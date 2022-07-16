@@ -42,7 +42,9 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   provider: ^6.0.3
   image_picker: ^0.8.5+3
+  local_image_provider: ^4.2.0
   dropdownfield: ^1.0.3
+
 
 
   # The following adds the Cupertino Icons font to your application.
