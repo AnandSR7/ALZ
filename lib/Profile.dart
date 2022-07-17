@@ -6,9 +6,6 @@ import 'package:flutterprojects/storage_service.dart';
 import 'storage_service.dart';
 import 'home.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'dart:async';
-import 'package:image_picker/image_picker.dart';
-import 'signin_screen.dart';
 import 'package:file_picker/file_picker.dart';
 
 
@@ -23,19 +20,6 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   File?image;
 
-  // final ImagePicker _picker=ImagePicker();
-  // Future pickImage(ImageSource source) async{
-  //   final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  //   if (image==null)return;
-  //   final imagetemp=File(image.path);
-  //  setState(() => this.image=imagetemp);
-  // }
-  // Future takephoto(ImageSource source) async{
-  //   final image = await ImagePicker().pickImage(source: ImageSource.camera);
-  //   if (image==null)return;
-  //   final imagetemp=File(image.path);
-  //  setState(() => this.image=imagetemp);
-  // }
   TextEditingController name = new TextEditingController();
   TextEditingController rel = new TextEditingController();
   TextEditingController des = new TextEditingController();
@@ -96,13 +80,14 @@ class _ProfileState extends State<Profile> {
                     "Name":name.text,
                     "Relation":rel.text,
                     "Description":des.text,
+                    
                   };
                    final FirebaseAuth auth = FirebaseAuth.instance;
                     User ?user = auth.currentUser;
                    final uid = user!.uid;
                   final databaseReference  = FirebaseFirestore.instance;
                 
-                   databaseReference .collection("Users").doc(uid).collection("Profiles").add(data);
+                   databaseReference.collection("Users").doc(uid).collection("Profiles").add(data);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) =>   MyHomePage(title: "ALZ",)));
