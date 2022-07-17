@@ -44,6 +44,7 @@ dependencies:
   image_picker: ^0.8.5+3
   local_image_provider: ^4.2.0
   dropdownfield: ^1.0.3
+  file_picker: ^4.6.1
 
 
 
