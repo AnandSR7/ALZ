@@ -25,11 +25,28 @@
       Future fetchEmergency() async {
      final FirebaseAuth auth = FirebaseAuth.instance;
                   final User ?user = auth.currentUser;
-                  final uid = user!.uid;          
-
-    // QuerySnapshot<Map<String, dynamic>> num =await FirebaseFirestore.instance.collection('Users').doc(uid).collection("Emergency no").get();
-    // _numberCtrl.String = num['Emergencyno'];
-    return num;
+                  final uid = user!.uid;      
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance.collection('Users').doc(uid).collection('Emergencyno').snapshots(),
+                    builder:(BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
+                         if (!snapshot.hasData) {
+            return Align(
+              alignment: Alignment.bottomCenter,
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView(
+            children: snapshot.data!.docs.map((document) {
+              return Center(child: Text(document['Emergencyno']));
+                    }).toList(),
+          );
+                    },
+                  );    
+     
+    // QuerySnapshot<Map<String, dynamic>> numb =await FirebaseFirestore.instance.collection('Users').doc(uid).collection("Emergency no").get();
+     // QuerySnapshot<Map<String, dynamic>> numb =await FirebaseFirestore.instance.collection('Users').get();
+    // _numberCtrl.text= num[0];
+   // print(numb);
   }
       @override
       void initState() {
@@ -41,56 +58,60 @@
       @override
       Widget build(BuildContext context) {
         
-        return new MaterialApp(
+        return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: new Scaffold(
-            appBar: new AppBar(
+          home: Scaffold(
+            appBar: AppBar(
                backgroundColor:   Color.fromARGB(255, 79, 138, 189),
               centerTitle: true,
               title: const Text('EMERGENCY'),
               automaticallyImplyLeading: false,
-              leading: new IconButton(
-             icon: new Icon(Icons.arrow_back, color: Color.fromARGB(255, 8, 10, 36)),
+              leading: IconButton(
+             icon: Icon(Icons.arrow_back, color: Color.fromARGB(255, 8, 10, 36)),
             onPressed: () => Navigator.of(context).pop(),
             ),
             ),
-            body: new Row( 
-              mainAxisAlignment: MainAxisAlignment.center,
-              children:<Widget>[
+            body: 
+            (
+               Row( 
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:<Widget>[
+                  
+              Column(
                 
-            Column(
-              
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox.fromSize(
-  size: Size(250, 250), // button width and height
-  child: ClipOval(
-    child: Material(
-      color: Colors.red, // button color
-      child: InkWell(
-        splashColor: Colors.green, // splash color
-        onTap: () async{
-                      
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox.fromSize(
+              size: Size(250, 250), 
+              child: ClipOval(
+                child: Material(
+                  color: Colors.red, // button color
+                  child: InkWell(
+                    splashColor: Color.fromARGB(255, 138, 212, 141), 
+                    onTap: () async{
+                                 //await fetchEmergency();
+                         
                             FlutterPhoneDirectCaller.callNumber(_numberCtrl.text);
-                            print(num);
-                          }, // button pressed
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-                Icon(Icons.call, size: 75,), // icon
-                Text("Call",style: TextStyle(fontSize: 50),),
-                 // text
-          ],
-        ),
-      ),
-    ),
-  ),
-),
-              ],
-            )
-
-
-              ]
+                              
+                            }, // button pressed
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                  Icon(Icons.call, size: 75,), // icon
+                  Text("Call",style: TextStyle(fontSize: 50),),
+                   // text
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+                ],
+              )
+            
+            
+                ]
+              )
             ),
           ),
         );

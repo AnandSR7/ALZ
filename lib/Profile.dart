@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 import 'package:image_picker/image_picker.dart';
 import 'signin_screen.dart';
+import 'package:file_picker/file_picker.dart';
 
 
 
@@ -21,18 +22,18 @@ class _ProfileState extends State<Profile> {
   File?image;
 
   // final ImagePicker _picker=ImagePicker();
-  Future pickImage(ImageSource source) async{
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image==null)return;
-    final imagetemp=File(image.path);
-   setState(() => this.image=imagetemp);
-  }
-  Future takephoto(ImageSource source) async{
-    final image = await ImagePicker().pickImage(source: ImageSource.camera);
-    if (image==null)return;
-    final imagetemp=File(image.path);
-   setState(() => this.image=imagetemp);
-  }
+  // Future pickImage(ImageSource source) async{
+  //   final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  //   if (image==null)return;
+  //   final imagetemp=File(image.path);
+  //  setState(() => this.image=imagetemp);
+  // }
+  // Future takephoto(ImageSource source) async{
+  //   final image = await ImagePicker().pickImage(source: ImageSource.camera);
+  //   if (image==null)return;
+  //   final imagetemp=File(image.path);
+  //  setState(() => this.image=imagetemp);
+  // }
   TextEditingController name = new TextEditingController();
   TextEditingController rel = new TextEditingController();
   TextEditingController des = new TextEditingController();
@@ -142,7 +143,7 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
-  Widget bottomSheet(){
+   Widget bottomSheet(){
     return Container(
       height: 100.0,
       width:MediaQuery.of(context).size.width,
@@ -159,18 +160,27 @@ class _ProfileState extends State<Profile> {
         Row(mainAxisAlignment: MainAxisAlignment.center,
           children:<Widget> [
             FlatButton.icon(
-              icon: Icon(Icons.camera),
-              onPressed: (){
-               takephoto(ImageSource.camera);
-              },
-              label: Text("Camera"),
-            ),
-            FlatButton.icon(
               icon: Icon(Icons.image),
-              onPressed: (){
-               pickImage(ImageSource.gallery);
+              onPressed: ()async{
+              final results= await FilePicker.platform.pickFiles(
+                allowMultiple:true,
+                type:FileType.custom,
+                allowedExtensions:['png','jpg'],
+              );
+              if(results==null){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                  content:Text('No file selected.'),
+                )
+                );
+                return null;
+              }
+              final path=results.files.single.path!;
+              final fileName=results.files.single.name;
+              print(path);
+              print(fileName);
               },
-              label: Text("Gallery"),
+              label: Text("Upload an image"),
             ),
           ],
         )
