@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutterprojects/storage_service.dart';
+import 'storage_service.dart';
 import 'home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
@@ -39,6 +41,7 @@ class _ProfileState extends State<Profile> {
   TextEditingController des = new TextEditingController();
   @override
   Widget build(BuildContext context) {
+    
      return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
        
@@ -175,10 +178,11 @@ class _ProfileState extends State<Profile> {
                 );
                 return null;
               }
+              final Storage storage=Storage();
               final path=results.files.single.path!;
               final fileName=results.files.single.name;
-              print(path);
-              print(fileName);
+
+              storage.uploadFile(path,fileName).then((value)=>print('Done'));
               },
               label: Text("Upload an image"),
             ),
