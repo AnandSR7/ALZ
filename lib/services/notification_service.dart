@@ -40,12 +40,12 @@ class NotificationService {
       enableVibration: true,
       category: 'reminder',
       icon: '@mipmap/ic_notification',
-      groupKey: 'com.varadgauthankar.simple_reminder.REMINDER',
+      groupKey:'com.example.flutterprojects.REMINDER',
     );
   }
 
   getIosNotificationDetails() {
-    return IOSNotificationDetails();
+    return const IOSNotificationDetails();
   }
 
   getNotificationDetails() {

@@ -22,7 +22,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:   Color.fromARGB(255, 79, 138, 189),
-        title: Text('Scheduler'),
+        centerTitle: true,
+        title: Text('SCHEDULER'),
       ),
       body: Container(
         width:MediaQuery.of(context).size.width,

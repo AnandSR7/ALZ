@@ -70,23 +70,7 @@ class _ReminderPageState extends State<ReminderPage> {
       appBar: AppBar(
         backgroundColor:   Color.fromARGB(255, 79, 138, 189),
         title: Text(widget.isEdit ? 'Edit Task' : 'Create Task'),
-        // actions: [
-        //   // delete Reminder icon
-        //   widget.isEdit
-        //       ? IconButton(
-        //           icon: Icon(EvaIcons.trashOutline),
-        //           tooltip: 'Delete Task',
-        //           onPressed: () {
-        //             showDialog(
-        //               context: context,
-        //               builder: (context) => DeleteAlertDialog(
-        //                 onPressed: deleteReminder,
-        //               ),
-        //             );
-        //           },
-        //         )
-        //       : SizedBox.shrink(),
-        // ],
+     
       ),
       body: ListView(
         padding: EdgeInsets.all(8.0),
