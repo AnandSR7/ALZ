@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:flutterprojects/main.dart';
+import 'main.dart';
 import 'Profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -199,7 +201,12 @@ class _MyGridScreenState extends State<MyGridScreen> {
      ),
 ),
 
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>  Scheduler()),
+    );
+                },
               ),
             ),
             Container(

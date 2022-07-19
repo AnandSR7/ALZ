@@ -2,21 +2,45 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutterprojects/storage_service.dart';
-import 'storage_service.dart';
 import 'home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
+import 'package:firebase_storage/firebase_storage.dart'as firebase_storage;
+import 'package:firebase_storage/firebase_storage.dart';
 
 
-
+String downloadUrl="";
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
 }
-
+class Storage{
+  final firebase_storage.FirebaseStorage storage=firebase_storage.FirebaseStorage.instance;
+  
+  
+  Future<void> uploadFile(
+    String filePath,
+    String fileName,
+  )
+async{
+  File file=File(filePath);
+  try{
+   await storage.ref('images/$fileName').putFile(file);
+  }on firebase_core.FirebaseException catch(e){
+    print(e);
+  }
+  
+   TaskSnapshot taskSnapshot =
+          await storage.ref('images/$fileName').putFile(file);
+   final FirebaseAuth auth = FirebaseAuth.instance;
+                    User ?user = auth.currentUser;
+                   final uid = user!.uid;
+     downloadUrl = await taskSnapshot.ref.getDownloadURL();
+}
+ }
 class _ProfileState extends State<Profile> {
   File?image;
 
@@ -80,7 +104,7 @@ class _ProfileState extends State<Profile> {
                     "Name":name.text,
                     "Relation":rel.text,
                     "Description":des.text,
-                    
+                    "photo":downloadUrl,
                   };
                    final FirebaseAuth auth = FirebaseAuth.instance;
                     User ?user = auth.currentUser;
