@@ -112,7 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
            };
     final db  = FirebaseFirestore.instance;
 
-     db.collection("Users").doc(uid).collection("Emergency no").add(data);
+     db.collection("Users").doc(uid).set(data);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MyApp()));
                   }).onError((error, stackTrace) {

@@ -21,39 +21,21 @@
     }
     
     class _AppState extends State<App> {
-      TextEditingController _numberCtrl = new TextEditingController();
-      Future fetchEmergency() async {
+     String _numberCtrl = "";
+      fetchEmergency() async {
      final FirebaseAuth auth = FirebaseAuth.instance;
                   final User ?user = auth.currentUser;
                   final uid = user!.uid;      
-                  StreamBuilder(
-                    stream: FirebaseFirestore.instance.collection('Users').doc(uid).collection('Emergencyno').snapshots(),
-                    builder:(BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
-                         if (!snapshot.hasData) {
-            return Align(
-              alignment: Alignment.bottomCenter,
-              child: CircularProgressIndicator(),
-            );
-          }
-          return ListView(
-            children: snapshot.data!.docs.map((document) {
-              return Center(child: Text(document['Emergencyno']));
-                    }).toList(),
-          );
-                    },
-                  );    
-     
-    // QuerySnapshot<Map<String, dynamic>> numb =await FirebaseFirestore.instance.collection('Users').doc(uid).collection("Emergency no").get();
-     // QuerySnapshot<Map<String, dynamic>> numb =await FirebaseFirestore.instance.collection('Users').get();
-    // _numberCtrl.text= num[0];
-   // print(numb);
+  final docRef = FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser?.uid);
+DocumentSnapshot doc = await docRef.get();
+final data = doc.data() as Map<String, dynamic>;
+Map<String, String> numb =
+      data.map((key, value) => MapEntry(key, value.toString()));
+      var b=numb['Emergencyno'];
+      return b;
   }
-      @override
-      void initState() {
-        super.initState();
-    
-       _numberCtrl.text ="7025350926";
-      }
+      
+      
     
       @override
       Widget build(BuildContext context) {
@@ -89,9 +71,10 @@
                   child: InkWell(
                     splashColor: Color.fromARGB(255, 138, 212, 141), 
                     onTap: () async{
-                                 //await fetchEmergency();
-                         
-                            FlutterPhoneDirectCaller.callNumber(_numberCtrl.text);
+                                 
+                         String a=await fetchEmergency();
+                          print('$a');
+                            FlutterPhoneDirectCaller.callNumber(a);
                               
                             }, // button pressed
                     child: Column(
