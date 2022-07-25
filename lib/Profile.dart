@@ -181,7 +181,7 @@ class _ProfileState extends State<Profile> {
               icon: Icon(Icons.image),
               onPressed: ()async{
               final results= await FilePicker.platform.pickFiles(
-                allowMultiple:true,
+                allowMultiple:false,
                 type:FileType.custom,
                 allowedExtensions:['png','jpg'],
               );
@@ -193,15 +193,18 @@ class _ProfileState extends State<Profile> {
                 );
                 return null;
               }
+              else{
+                 ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                  content:Text('File selected'),
+                )
+                );
+              }
               
               final Storage storage=Storage();
               final path=results.files.single.path!;
               final fileName=results.files.single.name;
-
-              await storage.uploadFile(path,fileName);
-              final FirebaseAuth auth = FirebaseAuth.instance;
-                    User ?user = auth.currentUser;
-                   final uid = user!.uid;
+              await storage.uploadFile(path,fileName);     
               },
               label: Text("Upload an image"),
             ),
