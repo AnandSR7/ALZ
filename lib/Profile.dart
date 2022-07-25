@@ -1,3 +1,5 @@
+import 'dart:core';
+import 'dart:developer';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,7 @@ class Storage{
   final firebase_storage.FirebaseStorage storage=firebase_storage.FirebaseStorage.instance;
   
   
-  Future<void> uploadFile(
+  Future uploadFile(
     String filePath,
     String fileName,
   )
@@ -39,6 +41,8 @@ async{
                     User ?user = auth.currentUser;
                    final uid = user!.uid;
      downloadUrl = await taskSnapshot.ref.getDownloadURL();
+     return downloadUrl;
+     print(downloadUrl);
 }
  }
 class _ProfileState extends State<Profile> {
@@ -99,12 +103,16 @@ class _ProfileState extends State<Profile> {
                   primary: Colors.red, // background
                   onPrimary: Colors.white, // foreground
                 ),
-                onPressed: () {
+                onPressed: () async{
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>   MyHomePage(title: "ALZ",)));
+                
                   Map<String,dynamic>data={
                     "Name":name.text,
                     "Relation":rel.text,
                     "Description":des.text,
-                    "photo":downloadUrl,
+                    "photo": downloadUrl,
                   };
                    final FirebaseAuth auth = FirebaseAuth.instance;
                     User ?user = auth.currentUser;
@@ -112,9 +120,7 @@ class _ProfileState extends State<Profile> {
                   final databaseReference  = FirebaseFirestore.instance;
                 
                    databaseReference.collection("Users").doc(uid).collection("Profiles").add(data);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) =>   MyHomePage(title: "ALZ",)));
+                   
                  },
                 child: Text('Save'),
               )
@@ -187,11 +193,15 @@ class _ProfileState extends State<Profile> {
                 );
                 return null;
               }
+              
               final Storage storage=Storage();
               final path=results.files.single.path!;
               final fileName=results.files.single.name;
 
-              storage.uploadFile(path,fileName).then((value)=>print('Done'));
+              await storage.uploadFile(path,fileName);
+              final FirebaseAuth auth = FirebaseAuth.instance;
+                    User ?user = auth.currentUser;
+                   final uid = user!.uid;
               },
               label: Text("Upload an image"),
             ),
